@@ -13,6 +13,6 @@ export async function getCityByNameService(name) {
 
     return city;
   } catch (error) {
-    return null;
+      return null;
   }
 }
