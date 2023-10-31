@@ -16,3 +16,5 @@ export async function getCityByNameService(name) {
       return null;
   }
 }
+
+// npm i typescript @types/react @types/react-dom @types/node -D
