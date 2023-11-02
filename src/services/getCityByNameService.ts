@@ -1,6 +1,13 @@
 import { api } from "./api";
 
-export async function getCityByNameService(name) {
+export interface CityProps {
+  id: string;
+  name: string;
+  latitude: number;
+  longitude: number;
+}
+
+export async function getCityByNameService(name: string) {
   try {
     const { data } = await api.get(`/weather?q=${name}`);
 

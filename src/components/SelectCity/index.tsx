@@ -2,14 +2,14 @@ import './styles.css';
 import { useEffect, useState } from 'react';
 
 import { Input } from '../Input';
-import { getCityByNameService } from '../../services/getCityByNameService';
+import { getCityByNameService, CityProps } from '../../services/getCityByNameService';
 
 export function SelectCity({ onSelect }) {
-  const [city, setCity] = useState();
+  const [city, setCity] = useState<CityProps[]>([]);
   const [search, setSearch] = useState('');
   const [isLoading, setIsLoading] = useState(false);
 
-  async function getCities(name) {
+  async function getCities(name: string) {
     setIsLoading(true);
 
     const response = await getCityByNameService(name);
@@ -37,10 +37,13 @@ export function SelectCity({ onSelect }) {
 
       <div className='select-list'>
         {
-          city &&
-          <button type="button" key={city.id} onClick={() => onSelect(city)}>
-            <p>{city.name}</p>
-          </button>
+          city.length > 0 &&
+          city.map((item)  => (
+            <button type="button" key={item.id} onClick={() => onSelect(item)}>
+              <p>{city[0].name}</p>
+            </button>
+          ))
+          
         }
       </div>
     </div>
