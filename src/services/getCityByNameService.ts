@@ -1,13 +1,13 @@
 import { api } from "./api";
 
-export interface CityProps {
+export interface CityProps { // usado quando os tipos de variaveis normais nao sao suficientes
   id: string;
   name: string;
   latitude: number;
   longitude: number;
 }
 
-export async function getCityByNameService(name: string) {
+export async function getCityByNameService(name: string): Promise<CityProps[]> {
   try {
     const { data } = await api.get(`/weather?q=${name}`);
 
@@ -18,9 +18,9 @@ export async function getCityByNameService(name: string) {
       latitude: data.coord.lat,
     };
 
-    return city;
+    return [city];
   } catch (error) {
-      return null;
+      return [];
   }
 }
 
