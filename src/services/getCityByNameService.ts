@@ -7,10 +7,22 @@ export interface CityProps { // usado quando os tipos de variaveis normais nao s
   longitude: number;
 }
 
+export interface CityAPIResponse {  // informações q importam do retorno da api
+  id: string;
+  name: string;
+  sys: {
+    country?: string;
+  };
+  coord: {
+    lat: number;
+    lon: number;
+  }
+}
+
 export async function getCityByNameService(name: string): Promise<CityProps[]> {
   try {
-    const { data } = await api.get(`/weather?q=${name}`);
-
+    const { data } = await api.get<CityAPIResponse>(`/weather?q=${name}`);
+    
     const city = {
       id: data.id,
       name: data.sys.country ? `${data.name}, ${data.sys.country}` : data.name,
