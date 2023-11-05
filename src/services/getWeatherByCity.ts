@@ -4,7 +4,12 @@ import { api } from "./api";
 import { getNextDays } from "../utils/getNextDays";
 import { weatherIcons } from "../utils/weatherIcons";
 
-export async function getWeatherByCity({ latitude, longitude }) {
+interface GetWeatherByCityProps {
+  latitude: number;
+  longitude: number;
+}
+
+export async function getWeatherByCity({ latitude, longitude }: GetWeatherByCityProps) {
   const { data } = await api.get(`/forecast?lat=${latitude}&lon=${longitude}`);
   const { main, weather, wind, pop } = data.list[0];
 
