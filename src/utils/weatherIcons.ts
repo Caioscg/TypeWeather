@@ -47,3 +47,5 @@ export const weatherIcons = {
     icon_night: iconSnowNight,
   },
 }
+
+export type WeatherIconsKeyProps = typeof weatherIcons
