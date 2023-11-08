@@ -48,4 +48,4 @@ export const weatherIcons = {
   },
 }
 
-export type WeatherIconsKeyProps = typeof weatherIcons
+export type WeatherIconsKeyProps = keyof typeof weatherIcons //opções da variavel
